@@ -13,17 +13,18 @@ import rosegraphics as rg
 
 def main():
     """ Calls the various   TEST   functions in this module. """
-    #run_test_make_simple_list()
+    run_test_make_simple_list()
     run_test_make_simple_string()
     run_test_make_less_simple_string()
 
     # ------------------------------------------------------------------
-    # TODO: 8. Uncomment the tests below before working TO DO 9.
+    # Done: 8. Uncomment the tests below before working TO DO 9.
     #   They launch annoying rg.RoseWindows on each run that you don't want
     #   until you get to TO DO 9 and 10.
     # ------------------------------------------------------------------
-    # run_test_draw_shapes()
-    # run_test_rectangles_from_circles()
+
+    run_test_draw_shapes()
+    run_test_rectangles_from_circles()
 
 
 def run_test_make_simple_list():
@@ -282,7 +283,8 @@ def draw_shapes(shapes, window):
       :type window:  rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 9. Implement and test this function. Make sure you do TO DO 8 in main first!
+    # Done: 9. Implement and test this function. Make sure you do TO DO 8 in
+    # main first!
     #     The testing code is already written for you (that you just enabled in TO DO 8).
     #
     ####################################################################
@@ -292,6 +294,10 @@ def draw_shapes(shapes, window):
     # FWIW: The word for ideas like this is "polymorphism".
     ####################################################################
     # ------------------------------------------------------------------
+    shapes = shapes
+    for k in range(len(shapes)):
+        shapes[k].attach_to(window)
+    window.render(.3)
 
 
 def run_test_rectangles_from_circles():
@@ -393,7 +399,7 @@ def rectangles_from_circles(circles):
       :rtype: list of rg.Rectangles
     """
     # ------------------------------------------------------------------
-    # TODO: 10. Implement and test this function.
+    # Done: 10. Implement and test this function.
     #     The testing code is already written for you (above).
     #
     ####################################################################
@@ -405,6 +411,20 @@ def rectangles_from_circles(circles):
     ####################################################################
     # ------------------------------------------------------------------
 
+    list_of_circles = circles
+    list_of_rectangles = []
+    for k in range(len(list_of_circles)):
+        circle = list_of_circles[k]
+        center = circle.center
+        radius = circle.radius
+        corner_1x = center.x - radius
+        corner_1y = center.y - radius
+        corner_2x = center.x + radius
+        corner_2y = center.y + radius
+        rectangle = rg.Rectangle(rg.Point(corner_1x, corner_1y), rg.Point(
+            corner_2x, corner_2y))
+        list_of_rectangles = list_of_rectangles + [rectangle]
+    return list_of_rectangles
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
